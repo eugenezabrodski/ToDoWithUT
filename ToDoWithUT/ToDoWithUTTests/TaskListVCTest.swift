@@ -10,8 +10,13 @@ import XCTest
 
 final class TaskListVCTest: XCTestCase {
 
+    var sut: TaskListVC!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: String(describing: TaskListVC.self))
+        sut = vc as? TaskListVC
+        sut.loadViewIfNeeded()
     }
 
     override func tearDownWithError() throws {
@@ -19,12 +24,28 @@ final class TaskListVCTest: XCTestCase {
     }
 
     func testTableViewNotNil() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: String(describing: TaskListVC.self))
-        let sut = vc as! TaskListVC
-        sut.loadViewIfNeeded()
-        
         XCTAssertNotNil(sut.tableView)
     }
+    
+    func testDataProviderIsNotNill() {
+        XCTAssertNotNil(sut.dataProvider)
+    }
+    
+    func testWhenTableViewDelegateIsSet() {
+        XCTAssertTrue(sut.tableView.delegate is DataProvider)
+    }
+    
+    func testWhenTableViewDataSourceIsSet() {
+        XCTAssertTrue(sut.tableView.dataSource is DataProvider)
+    }
+    
+    func testWhenDelegateEqualsDataSource() {
+        XCTAssertEqual(
+            sut.tableView.delegate as? DataProvider,
+            sut.tableView.dataSource as? DataProvider
+        )
+    }
+    
+    
 
 }

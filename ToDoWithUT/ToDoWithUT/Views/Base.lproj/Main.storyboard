@@ -19,6 +19,20 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pm2-cv-QKj">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" id="H1x-q6-HRa" customClass="TaskCell" customModule="ToDoWithUT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H1x-q6-HRa" id="XVD-az-gtg">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="JyQ-li-RTc" id="eNM-hK-iT9"/>
+                                    <outlet property="delegate" destination="JyQ-li-RTc" id="dUz-dg-6e6"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -31,12 +45,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataProvider" destination="JyQ-li-RTc" id="5wI-vb-YC1"/>
                         <outlet property="tableView" destination="pm2-cv-QKj" id="Mz0-Me-z97"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="JyQ-li-RTc" customClass="DataProvider" customModule="ToDoWithUT" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="-283" y="5"/>
+            <point key="canvasLocation" x="-376" y="35"/>
         </scene>
     </scenes>
     <resources>
