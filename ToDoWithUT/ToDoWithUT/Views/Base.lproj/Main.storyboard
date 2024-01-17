@@ -178,15 +178,32 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcP-1a-obc">
+                                <rect key="frame" x="64" y="732" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEV-lO-U7i">
+                                <rect key="frame" x="247" y="732" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="save" destination="tEm-kQ-5BQ" eventType="touchUpInside" id="pgp-ha-qBG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="alX-hj-quT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="adressTextField" destination="884-Id-ELm" id="e1f-2J-xhg"/>
+                        <outlet property="cancelButton" destination="GcP-1a-obc" id="reE-JJ-8Tt"/>
                         <outlet property="dateTextField" destination="Bqz-tf-CWi" id="s6P-ML-jIu"/>
                         <outlet property="descriptionTextField" destination="qYG-XF-f0n" id="cd1-iU-gc5"/>
                         <outlet property="locationTextField" destination="TMo-Q3-9R1" id="gYP-27-zPA"/>
+                        <outlet property="saveButton" destination="uEV-lO-U7i" id="1EK-ri-j63"/>
                         <outlet property="titleTextField" destination="wzo-jQ-zQp" id="z94-ft-HUh"/>
                     </connections>
                 </viewController>
