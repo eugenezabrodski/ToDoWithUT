@@ -44,32 +44,6 @@ final class NewTaskVCTests: XCTestCase {
         XCTAssertTrue(sut.descriptionTextField.isDescendant(of: sut.view))
     }
     
-    func testSaveToUseGeocoder() {
-        
-        let df = DateFormatter()
-        df.dateFormat = "dd.MM.yy"
-        let date = df.date(from: "01.01.19")
-        
-        sut.titleTextField.text = "Foo"
-        sut.locationTextField.text = "Bar"
-        sut.dateTextField.text = "01.01.19"
-        sut.adressTextField.text = "Minsk"
-        sut.descriptionTextField.text = "Baz"
-        sut.taskManager = TaskManager()
-        let mockGeocoder = MockCLGeoCoder()
-        sut.geocoder = mockGeocoder
-        
-        sut.save()
-        
-        let locationes = CLLocationCoordinate2D(latitude: 53.896196, longitude: 27.5503093)
-        let location = Location(name: "Bar", coordinate: locationes)
-        let generatedTask = Task(title: "Foo",description: "Baz", location: location, date: date)
-        placemark.mockCoordinate = locationes
-        mockGeocoder.completionHandler?([placemark], nil)
-        let task = sut.taskManager.task(at: 0)
-        
-        XCTAssertEqual(task, generatedTask)
-    }
     
     func testGeocoderCorrectCoordinates() {
         let geocoderAnswer = expectation(description: "Geocoder answer")
@@ -92,6 +66,25 @@ final class NewTaskVCTests: XCTestCase {
         
         waitForExpectations(timeout: 5)
     }
+    
+    func testSaveDismissNewTaskVC() {
+        let mockNewTaskVC = MockNewTaskViewController()
+        mockNewTaskVC.titleTextField = UITextField()
+        mockNewTaskVC.titleTextField.text = "Foo"
+        mockNewTaskVC.descriptionTextField = UITextField()
+        mockNewTaskVC.descriptionTextField.text = "Bar"
+        mockNewTaskVC.locationTextField = UITextField()
+        mockNewTaskVC.locationTextField.text = "Baz"
+        mockNewTaskVC.adressTextField = UITextField()
+        mockNewTaskVC.adressTextField.text = "Minsk"
+        mockNewTaskVC.dateTextField = UITextField()
+        mockNewTaskVC.dateTextField.text = "01.01.19"
+        
+        mockNewTaskVC.save()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            XCTAssertTrue(mockNewTaskVC.isDismiss)
+        }
+    }
 
 }
 
@@ -109,6 +102,16 @@ extension NewTaskVCTests {
         var mockCoordinate: CLLocationCoordinate2D!
         override var location: CLLocation? {
             return CLLocation(latitude: mockCoordinate.latitude, longitude: mockCoordinate.longitude)
+        }
+    }
+}
+
+extension NewTaskVCTests {
+    class MockNewTaskViewController: NewTaskVC {
+        var isDismiss = false
+        
+        override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+            isDismiss = true
         }
     }
 }

@@ -15,6 +15,12 @@ class TaskCell: UITableViewCell {
     
     @IBOutlet weak var locationLabel: UILabel!
     
+    private var dateFormatter: DateFormatter {
+        let df = DateFormatter()
+        df.dateFormat = "dd.MM.yy"
+        return df
+    }
+    
     func configure(withTask task: Task, done: Bool = false) {
         
         if done {
@@ -23,13 +29,15 @@ class TaskCell: UITableViewCell {
             dateLabel = nil
             locationLabel = nil
         } else {
+            let dateString = dateFormatter.string(from: task.date)
+            dateLabel.text = dateString
             self.titleLabel.text = task.title
             self.locationLabel.text = task.location?.name
             
-            let df = DateFormatter()
-            df.dateFormat = "dd.MM.yy"
-            let dateString = df.string(from: task.date)
-            dateLabel.text = dateString
+//            let df = DateFormatter()
+//            df.dateFormat = "dd.MM.yy"
+            //let dateString = df.string(from: task.date)
+            //dateLabel.text = dateString
         }
     }
 

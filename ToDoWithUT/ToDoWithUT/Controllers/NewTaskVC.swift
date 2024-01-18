@@ -29,8 +29,7 @@ class NewTaskVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
     @IBAction func save() {
@@ -46,6 +45,9 @@ class NewTaskVC: UIViewController {
             let location = Location(name: locationString!, coordinate: coordinate)
             let task = Task(title: titleString!, description: descriptionString, location: location, date: date)
             self.taskManager.add(task: task)
+            DispatchQueue.main.async {
+                self.dismiss(animated: true)
+            }
         }
     }
     
