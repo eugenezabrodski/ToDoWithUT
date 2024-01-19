@@ -20,10 +20,6 @@ class DataProvider: NSObject {
 
 extension DataProvider: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        Section.allCases.count
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let section = Section(rawValue: section) else { fatalError() }
@@ -78,6 +74,11 @@ extension DataProvider: UITableViewDelegate, UITableViewDataSource {
         }
         
         tableView.reloadData()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        Section.allCases.count
+        
     }
     
 }

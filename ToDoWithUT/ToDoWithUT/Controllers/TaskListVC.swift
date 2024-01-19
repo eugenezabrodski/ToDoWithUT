@@ -9,6 +9,7 @@ import UIKit
 
 class TaskListVC: UIViewController {
     
+    //let taskManager = TaskManager()
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet var dataProvider: DataProvider!

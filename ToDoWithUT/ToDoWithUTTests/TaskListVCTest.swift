@@ -95,6 +95,12 @@ final class TaskListVCTest: XCTestCase {
         sut.endAppearanceTransition()
         XCTAssertTrue((sut.tableView as! MockTableView).isReload)
     }
+    
+    func testTappingCellNotification() {
+        let task = Task(title: "Foo")
+        sut.dataProvider.taskManager?.add(task: task)
+        //expectation(forNotification: <#T##NSNotification.Name#>, object: <#T##Any?#>, handler: <#T##XCTNSNotificationExpectation.Handler?##XCTNSNotificationExpectation.Handler?##(Notification) -> Bool#>)
+    }
 
 }
 
